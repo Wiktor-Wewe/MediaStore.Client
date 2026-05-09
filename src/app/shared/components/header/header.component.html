@@ -1,0 +1,18 @@
+<header class="app-header">
+  <a routerLink="/products" class="brand">MediaStore</a>
+
+  <nav>
+    <a routerLink="/products" routerLinkActive="active">Produkty</a>
+
+    @if (authService.isAdmin()) {
+      <a routerLink="/admin/users" routerLinkActive="active">Admin</a>
+    }
+
+    @if (authService.isAuthenticated()) {
+      <button type="button" (click)="logout()">Wyloguj</button>
+    } @else {
+      <a routerLink="/login" routerLinkActive="active">Logowanie</a>
+      <a routerLink="/register" routerLinkActive="active">Rejestracja</a>
+    }
+  </nav>
+</header>

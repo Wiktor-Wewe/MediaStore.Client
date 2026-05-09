@@ -1,0 +1,88 @@
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+
+  min-height: 4.5rem;
+  padding: 0 2rem;
+
+  background: #111827;
+  color: #fff;
+  box-shadow: var(--shadow-md);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.35rem;
+  font-weight: 950;
+  letter-spacing: -0.04em;
+}
+
+.brand::before {
+  content: '';
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.55rem;
+  background:
+    linear-gradient(135deg, var(--color-primary) 0 48%, transparent 48%),
+    linear-gradient(315deg, var(--color-accent) 0 48%, transparent 48%);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.12);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+nav a,
+nav button {
+  min-height: 2.4rem;
+  border-radius: 999px;
+  padding: 0.55rem 0.95rem;
+
+  color: #fff;
+  background: transparent;
+  text-decoration: none;
+  font-weight: 750;
+
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+nav a:hover,
+nav button:hover,
+nav a.active {
+  background: var(--color-primary);
+  color: #111827;
+}
+
+@media (max-width: 720px) {
+  .app-header {
+    position: static;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  nav {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  nav a,
+  nav button {
+    flex: 1;
+  }
+}

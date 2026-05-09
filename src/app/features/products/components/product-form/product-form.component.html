@@ -1,0 +1,48 @@
+<section class="card">
+  <h2>Dodaj produkt</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="form">
+    <label>
+      Kod
+      <input type="text" formControlName="code" placeholder="np. P001" />
+    </label>
+
+    @if (hasError('code')) {
+      <p class="error">Kod jest wymagany i może mieć maksymalnie 10 znaków.</p>
+    }
+
+    @if (apiErrors()['Code']) {
+      <p class="error">{{ apiErrors()['Code'][0] }}</p>
+    }
+
+    <label>
+      Nazwa
+      <input type="text" formControlName="name" placeholder="np. Klawiatura" />
+    </label>
+
+    @if (hasError('name')) {
+      <p class="error">Nazwa jest wymagana i może mieć maksymalnie 100 znaków.</p>
+    }
+
+    @if (apiErrors()['Name']) {
+      <p class="error">{{ apiErrors()['Name'][0] }}</p>
+    }
+
+    <label>
+      Cena
+      <input type="number" formControlName="price" min="0.01" step="0.01" />
+    </label>
+
+    @if (hasError('price')) {
+      <p class="error">Cena musi być większa od 0.</p>
+    }
+
+    @if (apiErrors()['Price']) {
+      <p class="error">{{ apiErrors()['Price'][0] }}</p>
+    }
+
+    <button type="submit" [disabled]="isSubmitting()">
+      {{ isSubmitting() ? 'Dodawanie...' : 'Dodaj produkt' }}
+    </button>
+  </form>
+</section>

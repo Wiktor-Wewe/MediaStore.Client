@@ -1,0 +1,23 @@
+<section class="auth-card">
+  <h1>Logowanie</h1>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="form">
+    <label>
+      Email
+      <input type="email" formControlName="email" />
+    </label>
+
+    <label>
+      Hasło
+      <input type="password" formControlName="password" />
+    </label>
+
+    @if (apiErrors()['General']) {
+      <p class="error">{{ apiErrors()['General'][0] }}</p>
+    }
+
+    <button type="submit" [disabled]="isSubmitting()">
+      {{ isSubmitting() ? 'Logowanie...' : 'Zaloguj' }}
+    </button>
+  </form>
+</section>

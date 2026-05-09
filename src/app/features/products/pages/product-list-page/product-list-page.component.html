@@ -1,0 +1,98 @@
+<div class="page">
+  <header class="page-header">
+    <div>
+      <h1>Katalog produktów</h1>
+      <p>Lista produktów dostępnych w systemie.</p>
+    </div>
+  </header>
+
+  @if (authService.isAdmin()) {
+    <app-product-form (productCreated)="loadProducts()" />
+  }
+
+  <section class="card filters">
+    <input
+      type="text"
+      placeholder="Szukaj po kodzie lub nazwie"
+      [ngModel]="filters().search"
+      (ngModelChange)="updateSearch($event)"
+    />
+
+    <input
+      type="number"
+      placeholder="Cena od"
+      [ngModel]="filters().minPrice"
+      (ngModelChange)="filters.update((f) => ({ ...f, minPrice: $event }))"
+    />
+
+    <input
+      type="number"
+      placeholder="Cena do"
+      [ngModel]="filters().maxPrice"
+      (ngModelChange)="filters.update((f) => ({ ...f, maxPrice: $event }))"
+    />
+
+    <select [ngModel]="filters().sortBy" (ngModelChange)="updateSortBy($event)">
+      <option value="name">Nazwa</option>
+      <option value="code">Kod</option>
+      <option value="price">Cena</option>
+    </select>
+
+    <select [ngModel]="filters().sortDirection" (ngModelChange)="updateSortDirection($event)">
+      <option value="asc">Rosnąco</option>
+      <option value="desc">Malejąco</option>
+    </select>
+
+    <button type="button" (click)="applyFilters()">Filtruj</button>
+  </section>
+
+  <section class="card">
+    @if (isLoading()) {
+      <p>Ładowanie...</p>
+    } @else {
+      <table>
+        <thead>
+          <tr>
+            <th>Kod</th>
+            <th>Nazwa</th>
+            <th>Cena</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (product of products(); track product.id) {
+            <tr>
+              <td>{{ product.code }}</td>
+              <td>{{ product.name }}</td>
+              <td>{{ product.price | currency: 'PLN' : 'symbol' : '1.2-2' }}</td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="3">Brak produktów.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+
+      <footer class="pagination">
+        <button
+          type="button"
+          [disabled]="filters().pageNumber === 1"
+          (click)="changePage(filters().pageNumber - 1)"
+        >
+          Poprzednia
+        </button>
+
+        <span> Strona {{ filters().pageNumber }} z {{ totalPages() || 1 }} </span>
+
+        <button
+          type="button"
+          [disabled]="filters().pageNumber >= totalPages()"
+          (click)="changePage(filters().pageNumber + 1)"
+        >
+          Następna
+        </button>
+      </footer>
+    }
+  </section>
+</div>

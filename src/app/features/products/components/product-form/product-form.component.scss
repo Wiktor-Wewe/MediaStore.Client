@@ -1,0 +1,32 @@
+:host {
+  display: block;
+}
+
+.card {
+  border-left: 6px solid var(--color-primary);
+}
+
+h2 {
+  margin: 0 0 1rem;
+  font-size: 1.35rem;
+  letter-spacing: -0.03em;
+}
+
+.form {
+  grid-template-columns: 1fr 2fr 1fr auto;
+  align-items: end;
+}
+
+.error {
+  grid-column: 1 / -1;
+}
+
+button {
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .form {
+    grid-template-columns: 1fr;
+  }
+}
