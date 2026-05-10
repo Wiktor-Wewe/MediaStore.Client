@@ -78,7 +78,13 @@
       "title": "Szczegóły produktu",
       "description": "Opis",
       "noDescription": "Brak opisu produktu.",
-      "imageAlt": "Zdjęcie produktu"
+      "imageAlt": "Zdjęcie produktu",
+      "noImage": "Brak zdjęcia",
+      "loadError": "Nie udało się pobrać szczegółów produktu.",
+      "delete": "Usuń produkt",
+      "deleting": "Usuwanie...",
+      "deleteConfirm": "Czy na pewno chcesz usunąć ten produkt?",
+      "deleteError": "Nie udało się usunąć produktu."
     }
   },
   "admin": {
@@ -159,6 +165,7 @@
     },
     "product": {
       "createfailed": "Nie udało się utworzyć produktu.",
+      "notfound": "Nie znaleziono produktu.",
       "code": {
         "required": "Kod produktu jest wymagany.",
         "maxlength": "Kod produktu może mieć maksymalnie 10 znaków.",

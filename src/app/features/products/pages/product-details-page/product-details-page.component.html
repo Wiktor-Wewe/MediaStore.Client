@@ -22,7 +22,22 @@
       </div>
 
       <div class="content-panel">
-        <span class="code">{{ product()?.code }}</span>
+        <div class="details-header">
+          <span class="code">{{ product()?.code }}</span>
+
+          @if (authService.isAdmin()) {
+            <button
+              type="button"
+              class="btn-danger"
+              (click)="deleteProduct()"
+              [disabled]="isDeleting()"
+            >
+              {{
+                (isDeleting() ? 'products.details.deleting' : 'products.details.delete') | transloco
+              }}
+            </button>
+          }
+        </div>
 
         <h1>{{ product()?.name }}</h1>
 

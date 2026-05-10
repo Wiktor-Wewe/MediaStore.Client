@@ -40,4 +40,8 @@ export class ProductsService {
   createProduct(request: CreateProductRequest) {
     return this.http.post<Product>(`${API_BASE_URL}/products`, request);
   }
+
+  deleteProduct(id: string) {
+    return this.http.delete<void>(`${API_BASE_URL}/products/${id}`);
+  }
 }

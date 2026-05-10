@@ -101,3 +101,25 @@ h1 {
     grid-template-columns: 1fr;
   }
 }
+
+.details-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.details-header .btn-danger {
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .details-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .details-header .btn-danger {
+    width: 100%;
+  }
+}
