@@ -48,6 +48,12 @@
     </button>
   </section>
 
+  @if (error()) {
+    <section class="card error-box">
+      {{ error() }}
+    </section>
+  }
+
   <section class="card">
     @if (isLoading()) {
       <p>{{ 'common.loading' | transloco }}</p>
@@ -63,7 +69,7 @@
 
         <tbody>
           @for (product of products(); track product.id) {
-            <tr>
+            <tr (click)="goToDetails(product.id)" class="clickable-row">
               <td>{{ product.code }}</td>
               <td>{{ product.name }}</td>
               <td>{{ product.price | currency: 'PLN' : 'symbol' : '1.2-2' }}</td>

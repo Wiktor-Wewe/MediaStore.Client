@@ -16,6 +16,13 @@ export const routes: Routes = [
     component: ProductListPageComponent,
   },
   {
+    path: 'products/:id',
+    loadComponent: () =>
+      import('./features/products/pages/product-details-page/product-details-page.component').then(
+        (m) => m.ProductDetailsPageComponent
+      ),
+  },
+  {
     path: 'login',
     component: LoginPageComponent,
     canActivate: [guestGuard],

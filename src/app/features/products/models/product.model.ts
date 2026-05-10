@@ -5,10 +5,22 @@ export interface Product {
   price: number;
 }
 
+export interface ProductDetails {
+  id: string;
+  code: string;
+  name: string;
+  price: number;
+  imageUrl: string | null;
+  description: string | null;
+  descriptions: Record<string, string>;
+}
+
 export interface CreateProductRequest {
   code: string;
   name: string;
   price: number;
+  imageUrl?: string | null;
+  descriptions: Record<string, string>;
 }
 
 export interface ProductFilters {

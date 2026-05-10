@@ -1,12 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TranslocoPipe } from '@jsverse/transloco';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 import { PagedResponse } from '../../../../core/api/paged-response.model';
+import { ValidationProblemDetails } from '../../../../core/api/validation-error.model';
 import { AuthService } from '../../../../core/auth/auth.service';
 import { ProductFormComponent } from '../../components/product-form/product-form.component';
 import { Product, ProductFilters } from '../../models/product.model';
 import { ProductsService } from '../../services/products.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list-page',
@@ -20,6 +22,7 @@ export class ProductListPageComponent implements OnInit {
   readonly totalCount = signal(0);
   readonly totalPages = signal(0);
   readonly isLoading = signal(false);
+  readonly error = signal<string | null>(null);
 
   readonly appliedFilters = signal<ProductFilters>({
     search: '',
@@ -56,6 +59,8 @@ export class ProductListPageComponent implements OnInit {
 
   constructor(
     private readonly productsService: ProductsService,
+    private readonly transloco: TranslocoService,
+    private readonly router: Router,
     public readonly authService: AuthService
   ) {}
 
@@ -65,12 +70,24 @@ export class ProductListPageComponent implements OnInit {
 
   loadProducts(): void {
     this.isLoading.set(true);
+    this.error.set(null);
 
     this.productsService.getProducts(this.appliedFilters()).subscribe({
       next: (response: PagedResponse<Product>) => {
         this.products.set(response.items);
         this.totalCount.set(response.totalCount);
         this.totalPages.set(response.totalPages);
+      },
+      error: (err) => {
+        const firstError = this.getFirstError(err.error as ValidationProblemDetails);
+
+        this.error.set(
+          firstError
+            ? this.transloco.translate(firstError.toLowerCase())
+            : this.transloco.translate('products.loadError')
+        );
+
+        this.isLoading.set(false);
       },
       complete: () => {
         this.isLoading.set(false);
@@ -141,5 +158,19 @@ export class ProductListPageComponent implements OnInit {
       ...current,
       sortDirection: value,
     }));
+  }
+
+  goToDetails(id: string): void {
+    this.router.navigate(['/products', id]);
+  }
+
+  private getFirstError(problem?: ValidationProblemDetails): string | null {
+    if (!problem?.errors) {
+      return null;
+    }
+
+    const firstKey = Object.keys(problem.errors)[0];
+
+    return problem.errors[firstKey]?.[0] ?? null;
   }
 }

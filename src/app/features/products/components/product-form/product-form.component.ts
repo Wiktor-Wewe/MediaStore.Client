@@ -26,6 +26,11 @@ export class ProductFormComponent {
     code: ['', [Validators.required, Validators.maxLength(10)]],
     name: ['', [Validators.required, Validators.maxLength(100)]],
     price: [0, [Validators.required, Validators.min(0.01)]],
+    imageUrl: [''],
+    descriptionPl: [''],
+    descriptionEn: [''],
+    descriptionDe: [''],
+    descriptionCs: [''],
   });
 
   submit(): void {
@@ -36,14 +41,34 @@ export class ProductFormComponent {
       return;
     }
 
+    const value = this.form.getRawValue();
+
+    const request = {
+      code: value.code,
+      name: value.name,
+      price: value.price,
+      imageUrl: value.imageUrl || null,
+      descriptions: {
+        pl: value.descriptionPl,
+        en: value.descriptionEn,
+        de: value.descriptionDe,
+        cs: value.descriptionCs,
+      },
+    };
+
     this.isSubmitting.set(true);
 
-    this.productsService.createProduct(this.form.getRawValue()).subscribe({
+    this.productsService.createProduct(request).subscribe({
       next: () => {
         this.form.reset({
           code: '',
           name: '',
           price: 0,
+          imageUrl: '',
+          descriptionPl: '',
+          descriptionEn: '',
+          descriptionDe: '',
+          descriptionCs: '',
         });
 
         this.productCreated.emit();

@@ -56,6 +56,7 @@
     "minPricePlaceholder": "Cena od",
     "maxPricePlaceholder": "Cena do",
     "empty": "Brak produktów.",
+    "loadError": "Nie udało się pobrać listy produktów.",
     "form": {
       "title": "Dodaj produkt",
       "codePlaceholder": "np. P001",
@@ -64,7 +65,20 @@
       "submitting": "Dodawanie...",
       "codeInvalid": "Kod jest wymagany i może mieć maksymalnie 10 znaków.",
       "nameInvalid": "Nazwa jest wymagana i może mieć maksymalnie 100 znaków.",
-      "priceInvalid": "Cena musi być większa od 0."
+      "priceInvalid": "Cena musi być większa od 0.",
+      "imageUrl": "Link do zdjęcia",
+      "imageUrlPlaceholder": "https://example.com/image.jpg",
+      "descriptionPl": "Opis produktu po polsku",
+      "descriptionEn": "Opis produktu po angielsku",
+      "descriptionDe": "Opis produktu po niemiecku",
+      "descriptionCs": "Opis produktu po czesku"
+    },
+    "details": {
+      "back": "Wróć do listy",
+      "title": "Szczegóły produktu",
+      "description": "Opis",
+      "noDescription": "Brak opisu produktu.",
+      "imageAlt": "Zdjęcie produktu"
     }
   },
   "admin": {
@@ -165,6 +179,15 @@
       },
       "pricerange": {
         "invalid": "Zakres cen jest nieprawidłowy."
+      },
+      "imageurl": {
+        "invalid": "Link do zdjęcia jest nieprawidłowy."
+      },
+      "description": {
+        "language": {
+          "invalid": "Język opisu produktu jest nieprawidłowy."
+        },
+        "toolong": "Opis produktu jest za długi."
       }
     }
   }

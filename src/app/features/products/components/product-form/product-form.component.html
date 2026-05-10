@@ -57,6 +57,42 @@
       </div>
     </div>
 
+    <div class="field full-width">
+      <label for="imageUrl">{{ 'products.form.imageUrl' | transloco }}</label>
+      <input
+        id="imageUrl"
+        type="url"
+        formControlName="imageUrl"
+        [placeholder]="'products.form.imageUrlPlaceholder' | transloco"
+      />
+
+      <div class="field-error">
+        @if (apiErrors()['ImageUrl']) {
+          <p>{{ apiErrors()['ImageUrl'][0] | apiError }}</p>
+        }
+      </div>
+    </div>
+
+    <div class="field full-width">
+      <label for="descriptionPl">{{ 'products.form.descriptionPl' | transloco }}</label>
+      <textarea id="descriptionPl" formControlName="descriptionPl" rows="3"></textarea>
+    </div>
+
+    <div class="field full-width">
+      <label for="descriptionEn">{{ 'products.form.descriptionEn' | transloco }}</label>
+      <textarea id="descriptionEn" formControlName="descriptionEn" rows="3"></textarea>
+    </div>
+
+    <div class="field full-width">
+      <label for="descriptionDe">{{ 'products.form.descriptionDe' | transloco }}</label>
+      <textarea id="descriptionDe" formControlName="descriptionDe" rows="3"></textarea>
+    </div>
+
+    <div class="field full-width">
+      <label for="descriptionCs">{{ 'products.form.descriptionCs' | transloco }}</label>
+      <textarea id="descriptionCs" formControlName="descriptionCs" rows="3"></textarea>
+    </div>
+
     <div class="actions">
       <button type="submit" [disabled]="isSubmitting()">
         {{ (isSubmitting() ? 'products.form.submitting' : 'products.form.submit') | transloco }}

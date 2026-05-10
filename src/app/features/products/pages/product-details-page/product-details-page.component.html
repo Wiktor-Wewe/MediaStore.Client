@@ -1,0 +1,45 @@
+<div class="page">
+  <a routerLink="/products" class="back-link"> ← {{ 'products.details.back' | transloco }} </a>
+
+  @if (isLoading()) {
+    <section class="card">
+      <p>{{ 'common.loading' | transloco }}</p>
+    </section>
+  } @else if (error()) {
+    <section class="card error-box">
+      {{ error() }}
+    </section>
+  } @else if (product()) {
+    <section class="details-card">
+      <div class="image-panel">
+        @if (product()?.imageUrl) {
+          <img [src]="product()?.imageUrl" [alt]="'products.details.imageAlt' | transloco" />
+        } @else {
+          <div class="image-placeholder">
+            {{ 'products.details.noImage' | transloco }}
+          </div>
+        }
+      </div>
+
+      <div class="content-panel">
+        <span class="code">{{ product()?.code }}</span>
+
+        <h1>{{ product()?.name }}</h1>
+
+        <p class="price">
+          {{ product()?.price | currency: 'PLN' : 'symbol' : '1.2-2' }}
+        </p>
+
+        <section class="description">
+          <h2>{{ 'products.details.description' | transloco }}</h2>
+
+          @if (product()?.description) {
+            <p>{{ product()?.description }}</p>
+          } @else {
+            <p class="muted">{{ 'products.details.noDescription' | transloco }}</p>
+          }
+        </section>
+      </div>
+    </section>
+  }
+</div>

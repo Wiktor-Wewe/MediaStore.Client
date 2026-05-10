@@ -84,3 +84,11 @@
     flex: 1;
   }
 }
+
+.clickable-row {
+  cursor: pointer;
+}
+
+.clickable-row:hover td {
+  background: #fff3bf;
+}
