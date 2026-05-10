@@ -4,11 +4,12 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProductsService } from '../../services/products.service';
 import { ValidationProblemDetails } from '../../../../core/api/validation-error.model';
 import { TranslocoPipe } from '@jsverse/transloco';
+import { ApiErrorPipe } from '../../../../shared/pipes/api-error.pipe';
 
 @Component({
   selector: 'app-product-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, TranslocoPipe],
+  imports: [CommonModule, ReactiveFormsModule, TranslocoPipe, ApiErrorPipe],
   templateUrl: './product-form.component.html',
   styleUrl: './product-form.component.scss',
 })

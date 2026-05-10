@@ -13,12 +13,38 @@ h2 {
 }
 
 .form {
+  display: grid;
   grid-template-columns: 1fr 2fr 1fr auto;
-  align-items: end;
+  gap: 1rem;
+  align-items: start;
 }
 
-.error {
-  grid-column: 1 / -1;
+.field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.field label {
+  font-weight: 650;
+  font-size: 0.92rem;
+}
+
+.field-error {
+  min-height: 2.4rem;
+}
+
+.field-error p {
+  margin: 0;
+  color: var(--color-danger);
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.actions {
+  display: flex;
+  align-items: start;
+  padding-top: 1.65rem;
 }
 
 button {
@@ -28,5 +54,17 @@ button {
 @media (max-width: 900px) {
   .form {
     grid-template-columns: 1fr;
+  }
+
+  .field-error {
+    min-height: 0;
+  }
+
+  .actions {
+    padding-top: 0;
+  }
+
+  button {
+    width: 100%;
   }
 }

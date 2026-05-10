@@ -2,55 +2,65 @@
   <h2>{{ 'products.form.title' | transloco }}</h2>
 
   <form [formGroup]="form" (ngSubmit)="submit()" class="form">
-    <label>
-      {{ 'products.code' | transloco }}
+    <div class="field">
+      <label for="code">{{ 'products.code' | transloco }}</label>
       <input
+        id="code"
         type="text"
         formControlName="code"
         [placeholder]="'products.form.codePlaceholder' | transloco"
       />
-    </label>
 
-    @if (hasError('code')) {
-      <p class="error">{{ 'products.form.codeInvalid' | transloco }}</p>
-    }
+      <div class="field-error">
+        @if (hasError('code')) {
+          <p>{{ 'products.form.codeInvalid' | transloco }}</p>
+        }
 
-    @if (apiErrors()['Code']) {
-      <p class="error">{{ apiErrors()['Code'][0] }}</p>
-    }
+        @if (apiErrors()['Code']) {
+          <p>{{ apiErrors()['Code'][0] | apiError }}</p>
+        }
+      </div>
+    </div>
 
-    <label>
-      {{ 'products.name' | transloco }}
+    <div class="field">
+      <label for="name">{{ 'products.name' | transloco }}</label>
       <input
+        id="name"
         type="text"
         formControlName="name"
         [placeholder]="'products.form.namePlaceholder' | transloco"
       />
-    </label>
 
-    @if (hasError('name')) {
-      <p class="error">{{ 'products.form.nameInvalid' | transloco }}</p>
-    }
+      <div class="field-error">
+        @if (hasError('name')) {
+          <p>{{ 'products.form.nameInvalid' | transloco }}</p>
+        }
 
-    @if (apiErrors()['Name']) {
-      <p class="error">{{ apiErrors()['Name'][0] }}</p>
-    }
+        @if (apiErrors()['Name']) {
+          <p>{{ apiErrors()['Name'][0] | apiError }}</p>
+        }
+      </div>
+    </div>
 
-    <label>
-      {{ 'products.price' | transloco }}
-      <input type="number" formControlName="price" min="0.01" step="0.01" />
-    </label>
+    <div class="field">
+      <label for="price">{{ 'products.price' | transloco }}</label>
+      <input id="price" type="number" formControlName="price" min="0.01" step="0.01" />
 
-    @if (hasError('price')) {
-      <p class="error">{{ 'products.form.priceInvalid' | transloco }}</p>
-    }
+      <div class="field-error">
+        @if (hasError('price')) {
+          <p>{{ 'products.form.priceInvalid' | transloco }}</p>
+        }
 
-    @if (apiErrors()['Price']) {
-      <p class="error">{{ apiErrors()['Price'][0] }}</p>
-    }
+        @if (apiErrors()['Price']) {
+          <p>{{ apiErrors()['Price'][0] | apiError }}</p>
+        }
+      </div>
+    </div>
 
-    <button type="submit" [disabled]="isSubmitting()">
-      {{ (isSubmitting() ? 'products.form.submitting' : 'products.form.submit') | transloco }}
-    </button>
+    <div class="actions">
+      <button type="submit" [disabled]="isSubmitting()">
+        {{ (isSubmitting() ? 'products.form.submitting' : 'products.form.submit') | transloco }}
+      </button>
+    </div>
   </form>
 </section>
