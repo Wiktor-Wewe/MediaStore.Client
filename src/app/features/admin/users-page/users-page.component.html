@@ -1,0 +1,114 @@
+<div class="page">
+  <header class="page-header">
+    <div>
+      <h1>Administratorzy</h1>
+      <p>Zarządzaj kontami administratorów oraz rejestracją nowych kont.</p>
+    </div>
+  </header>
+
+  <app-registration-settings />
+
+  <section class="card toolbar">
+    <input
+      type="text"
+      placeholder="Szukaj po emailu"
+      [ngModel]="filters().email"
+      (ngModelChange)="updateEmail($event)"
+    />
+
+    <select [ngModel]="filters().status" (ngModelChange)="updateStatus($event)">
+      <option [ngValue]="null">Wszystkie statusy</option>
+      <option value="Pending">Oczekujące</option>
+      <option value="Active">Aktywne</option>
+    </select>
+
+    <select [ngModel]="filters().sortBy" (ngModelChange)="updateSortBy($event)">
+      <option value="email">Email</option>
+      <option value="status">Status</option>
+    </select>
+
+    <select [ngModel]="filters().sortDirection" (ngModelChange)="updateSortDirection($event)">
+      <option value="asc">Rosnąco</option>
+      <option value="desc">Malejąco</option>
+    </select>
+
+    <button type="button" (click)="applyFilters()">Filtruj</button>
+    <button type="button" class="secondary-button" (click)="clearFilters()">Wyczyść</button>
+  </section>
+
+  @if (error()) {
+    <section class="card error-box">
+      {{ error() }}
+    </section>
+  }
+
+  <section class="card">
+    @if (isLoading()) {
+      <p>Ładowanie administratorów...</p>
+    } @else {
+      <table>
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Rola</th>
+            <th>Status</th>
+            <th class="actions-column">Akcje</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (user of users(); track user.id) {
+            <tr>
+              <td>{{ user.email }}</td>
+              <td>{{ user.role }}</td>
+              <td>
+                @if (user.status === 'Active') {
+                  <span class="badge badge-success">Aktywny</span>
+                } @else {
+                  <span class="badge badge-warning">Oczekuje</span>
+                }
+              </td>
+              <td>
+                <div class="actions">
+                  @if (user.status === 'Pending') {
+                    <button type="button" (click)="approveUser(user.id)">Zatwierdź</button>
+                  }
+
+                  <button type="button" class="btn-danger" (click)="deleteUser(user.id)">
+                    Usuń
+                  </button>
+                </div>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="4">Brak administratorów dla wybranych filtrów.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+
+      <footer class="pagination">
+        <button
+          type="button"
+          [disabled]="filters().pageNumber === 1"
+          (click)="changePage(filters().pageNumber - 1)"
+        >
+          Poprzednia
+        </button>
+
+        <span>
+          Strona {{ filters().pageNumber }} z {{ totalPages() || 1 }} — razem: {{ totalCount() }}
+        </span>
+
+        <button
+          type="button"
+          [disabled]="filters().pageNumber >= totalPages()"
+          (click)="changePage(filters().pageNumber + 1)"
+        >
+          Następna
+        </button>
+      </footer>
+    }
+  </section>
+</div>

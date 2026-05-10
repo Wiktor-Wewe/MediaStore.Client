@@ -24,6 +24,28 @@
   color: var(--color-text-muted);
 }
 
+.success {
+  margin-bottom: 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: var(--radius-sm);
+  background: #dcfce7;
+  color: var(--color-success);
+  font-weight: 700;
+}
+
 button {
   width: 100%;
+}
+
+.secondary-link {
+  display: block;
+  margin-top: 1rem;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.secondary-link:hover {
+  color: var(--color-accent);
 }

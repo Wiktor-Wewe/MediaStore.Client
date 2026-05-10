@@ -1,0 +1,28 @@
+<section class="card registration-panel">
+  <div>
+    <strong>Rejestracja administratorów</strong>
+
+    @if (isLoading()) {
+      <span>Ładowanie ustawień...</span>
+    } @else {
+      <span>
+        Aktualnie:
+        <b [class.enabled]="enabled()" [class.disabled]="!enabled()">
+          {{ enabled() ? 'włączona' : 'wyłączona' }}
+        </b>
+      </span>
+    }
+
+    @if (error()) {
+      <p class="error">{{ error() }}</p>
+    }
+  </div>
+
+  <button type="button" (click)="toggleRegistration()" [disabled]="isLoading() || isSaving()">
+    @if (isSaving()) {
+      Zapisywanie...
+    } @else {
+      {{ enabled() ? 'Wyłącz rejestrację' : 'Włącz rejestrację' }}
+    }
+  </button>
+</section>

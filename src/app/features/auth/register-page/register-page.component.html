@@ -1,0 +1,48 @@
+<section class="auth-card">
+  <h1>Rejestracja admina</h1>
+  <p>Konto będzie aktywne dopiero po zatwierdzeniu przez aktywnego administratora.</p>
+
+  @if (isRegistered()) {
+    <div class="success">
+      Konto zostało zgłoszone do akceptacji. Po zatwierdzeniu będzie można się zalogować.
+    </div>
+  }
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="form">
+    <label>
+      Email
+      <input type="email" formControlName="email" placeholder="admin@example.com" />
+    </label>
+
+    @if (form.controls.email.touched && form.controls.email.invalid) {
+      <p class="error">Podaj poprawny adres email.</p>
+    }
+
+    @if (apiErrors()['Email']) {
+      <p class="error">{{ translateError(apiErrors()['Email'][0]) }}</p>
+    }
+
+    <label>
+      Hasło
+      <input type="password" formControlName="password" placeholder="Minimum 8 znaków" />
+    </label>
+
+    @if (form.controls.password.touched && form.controls.password.invalid) {
+      <p class="error">Hasło musi mieć minimum 8 znaków.</p>
+    }
+
+    @if (apiErrors()['Password']) {
+      <p class="error">{{ translateError(apiErrors()['Password'][0]) }}</p>
+    }
+
+    @if (apiErrors()['General']) {
+      <p class="error">{{ translateError(apiErrors()['General'][0]) }}</p>
+    }
+
+    <button type="submit" [disabled]="isSubmitting()">
+      {{ isSubmitting() ? 'Wysyłanie...' : 'Zarejestruj konto' }}
+    </button>
+  </form>
+
+  <a routerLink="/login" class="secondary-link">Masz już konto? Zaloguj się</a>
+</section>
