@@ -1,1 +1,201 @@
-{}
+{
+  "app": {
+    "name": "MediaStore"
+  },
+  "nav": {
+    "products": "Produkte",
+    "admin": "Admin",
+    "login": "Anmelden",
+    "register": "Registrieren",
+    "logout": "Abmelden"
+  },
+  "common": {
+    "email": "E-Mail",
+    "password": "Passwort",
+    "role": "Rolle",
+    "status": "Status",
+    "actions": "Aktionen",
+    "filter": "Filtern",
+    "clear": "Zurücksetzen",
+    "loading": "Wird geladen...",
+    "saving": "Wird gespeichert...",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "page": "Seite",
+    "of": "von",
+    "total": "gesamt",
+    "ascending": "Aufsteigend",
+    "descending": "Absteigend"
+  },
+  "auth": {
+    "login": {
+      "title": "Anmeldung",
+      "submit": "Anmelden",
+      "submitting": "Anmeldung läuft..."
+    },
+    "register": {
+      "title": "Admin-Registrierung",
+      "description": "Das Konto wird erst nach der Freigabe durch einen aktiven Administrator aktiviert.",
+      "success": "Das Konto wurde zur Freigabe eingereicht. Nach der Freigabe kannst du dich anmelden.",
+      "submit": "Konto registrieren",
+      "submitting": "Wird gesendet...",
+      "alreadyHaveAccount": "Du hast bereits ein Konto? Anmelden",
+      "emailPlaceholder": "admin@example.com",
+      "passwordPlaceholder": "Mindestens 8 Zeichen",
+      "emailInvalid": "Gib eine gültige E-Mail-Adresse ein.",
+      "passwordInvalid": "Das Passwort muss mindestens 8 Zeichen lang sein."
+    }
+  },
+  "products": {
+    "title": "Produktkatalog",
+    "subtitle": "Liste der im System verfügbaren Produkte.",
+    "code": "Code",
+    "name": "Name",
+    "price": "Preis",
+    "searchPlaceholder": "Nach Code oder Name suchen",
+    "minPricePlaceholder": "Preis von",
+    "maxPricePlaceholder": "Preis bis",
+    "empty": "Keine Produkte gefunden.",
+    "loadError": "Die Produktliste konnte nicht geladen werden.",
+    "form": {
+      "title": "Produkt hinzufügen",
+      "codePlaceholder": "z. B. P001",
+      "namePlaceholder": "z. B. Tastatur",
+      "submit": "Produkt hinzufügen",
+      "submitting": "Wird hinzugefügt...",
+      "codeInvalid": "Code ist erforderlich und darf maximal 10 Zeichen lang sein.",
+      "nameInvalid": "Name ist erforderlich und darf maximal 100 Zeichen lang sein.",
+      "priceInvalid": "Der Preis muss größer als 0 sein.",
+      "imageUrl": "Bild-URL",
+      "imageUrlPlaceholder": "https://example.com/image.jpg",
+      "descriptionPl": "Produktbeschreibung auf Polnisch",
+      "descriptionEn": "Produktbeschreibung auf Englisch",
+      "descriptionDe": "Produktbeschreibung auf Deutsch",
+      "descriptionCs": "Produktbeschreibung auf Tschechisch"
+    },
+    "details": {
+      "back": "Zurück zur Liste",
+      "title": "Produktdetails",
+      "description": "Beschreibung",
+      "noDescription": "Keine Produktbeschreibung verfügbar.",
+      "imageAlt": "Produktbild",
+      "noImage": "Kein Bild",
+      "loadError": "Die Produktdetails konnten nicht geladen werden.",
+      "delete": "Produkt löschen",
+      "deleting": "Wird gelöscht...",
+      "deleteConfirm": "Bist du sicher, dass du dieses Produkt löschen möchtest?",
+      "deleteError": "Das Produkt konnte nicht gelöscht werden."
+    }
+  },
+  "admin": {
+    "users": {
+      "title": "Administratoren",
+      "subtitle": "Verwalte Administratorkonten und die Registrierung neuer Konten.",
+      "searchPlaceholder": "Nach E-Mail suchen",
+      "allStatuses": "Alle Status",
+      "pending": "Ausstehend",
+      "active": "Aktiv",
+      "activeBadge": "Aktiv",
+      "pendingBadge": "Ausstehend",
+      "approve": "Freigeben",
+      "delete": "Löschen",
+      "empty": "Keine Administratoren für die ausgewählten Filter gefunden.",
+      "loading": "Administratoren werden geladen...",
+      "loadError": "Die Administratorliste konnte nicht geladen werden.",
+      "approveError": "Der Administrator konnte nicht freigegeben werden.",
+      "deleteError": "Der Administrator konnte nicht gelöscht werden.",
+      "deleteConfirm": "Bist du sicher, dass du diesen Administrator löschen möchtest?"
+    },
+    "registrationSettings": {
+      "title": "Administrator-Registrierung",
+      "loading": "Einstellungen werden geladen...",
+      "current": "Aktueller Status:",
+      "enabled": "aktiviert",
+      "disabled": "deaktiviert",
+      "enable": "Registrierung aktivieren",
+      "disable": "Registrierung deaktivieren",
+      "saving": "Wird gespeichert...",
+      "loadError": "Die Registrierungseinstellungen konnten nicht geladen werden.",
+      "saveError": "Die Registrierungseinstellungen konnten nicht gespeichert werden."
+    }
+  },
+  "sort": {
+    "email": "E-Mail",
+    "status": "Status",
+    "name": "Name",
+    "code": "Code",
+    "price": "Preis"
+  },
+  "error": {
+    "auth": {
+      "email": {
+        "required": "E-Mail ist erforderlich.",
+        "invalid": "Gib eine gültige E-Mail-Adresse ein.",
+        "alreadyexists": "Ein Konto mit dieser E-Mail-Adresse existiert bereits."
+      },
+      "password": {
+        "required": "Passwort ist erforderlich.",
+        "tooshort": "Das Passwort ist zu kurz."
+      },
+      "invalidcredentials": "Ungültige E-Mail oder ungültiges Passwort.",
+      "user": {
+        "notactive": "Das Konto wurde noch nicht aktiviert.",
+        "notfound": "Benutzer wurde nicht gefunden.",
+        "cannotdeleteself": "Du kannst dein eigenes Konto nicht löschen.",
+        "cannotdeletelastactiveadmin": "Der letzte aktive Administrator kann nicht gelöscht werden."
+      },
+      "registration": {
+        "disabled": "Die Registrierung ist derzeit deaktiviert."
+      },
+      "createfailed": "Das Konto konnte nicht erstellt werden."
+    },
+    "pagination": {
+      "pagenumber": {
+        "invalid": "Die Seitennummer ist ungültig."
+      },
+      "pagesize": {
+        "invalid": "Die Seitengröße ist ungültig."
+      },
+      "sortby": {
+        "invalid": "Das ausgewählte Sortierfeld ist ungültig."
+      },
+      "sortdirection": {
+        "invalid": "Die Sortierrichtung ist ungültig."
+      }
+    },
+    "product": {
+      "createfailed": "Das Produkt konnte nicht erstellt werden.",
+      "notfound": "Produkt wurde nicht gefunden.",
+      "code": {
+        "required": "Produktcode ist erforderlich.",
+        "maxlength": "Der Produktcode darf maximal 10 Zeichen lang sein.",
+        "alreadyexists": "Ein Produkt mit diesem Code existiert bereits."
+      },
+      "name": {
+        "required": "Produktname ist erforderlich.",
+        "maxlength": "Der Produktname darf maximal 100 Zeichen lang sein."
+      },
+      "price": {
+        "greaterthanzero": "Der Produktpreis muss größer als 0 sein."
+      },
+      "minprice": {
+        "invalid": "Der Mindestpreis ist ungültig."
+      },
+      "maxprice": {
+        "invalid": "Der Höchstpreis ist ungültig."
+      },
+      "pricerange": {
+        "invalid": "Der Preisbereich ist ungültig."
+      },
+      "imageurl": {
+        "invalid": "Die Bild-URL ist ungültig."
+      },
+      "description": {
+        "language": {
+          "invalid": "Die Sprache der Produktbeschreibung ist ungültig."
+        },
+        "toolong": "Die Produktbeschreibung ist zu lang."
+      }
+    }
+  }
+}

@@ -1,1 +1,201 @@
-{}
+{
+  "app": {
+    "name": "MediaStore"
+  },
+  "nav": {
+    "products": "Produkty",
+    "admin": "Admin",
+    "login": "Přihlášení",
+    "register": "Registrace",
+    "logout": "Odhlásit se"
+  },
+  "common": {
+    "email": "E-mail",
+    "password": "Heslo",
+    "role": "Role",
+    "status": "Stav",
+    "actions": "Akce",
+    "filter": "Filtrovat",
+    "clear": "Vymazat",
+    "loading": "Načítání...",
+    "saving": "Ukládání...",
+    "previous": "Předchozí",
+    "next": "Další",
+    "page": "Strana",
+    "of": "z",
+    "total": "celkem",
+    "ascending": "Vzestupně",
+    "descending": "Sestupně"
+  },
+  "auth": {
+    "login": {
+      "title": "Přihlášení",
+      "submit": "Přihlásit se",
+      "submitting": "Přihlašování..."
+    },
+    "register": {
+      "title": "Registrace administrátora",
+      "description": "Účet bude aktivní až po schválení aktivním administrátorem.",
+      "success": "Účet byl odeslán ke schválení. Po schválení se bude možné přihlásit.",
+      "submit": "Registrovat účet",
+      "submitting": "Odesílání...",
+      "alreadyHaveAccount": "Už máte účet? Přihlaste se",
+      "emailPlaceholder": "admin@example.com",
+      "passwordPlaceholder": "Minimálně 8 znaků",
+      "emailInvalid": "Zadejte platnou e-mailovou adresu.",
+      "passwordInvalid": "Heslo musí mít alespoň 8 znaků."
+    }
+  },
+  "products": {
+    "title": "Katalog produktů",
+    "subtitle": "Seznam produktů dostupných v systému.",
+    "code": "Kód",
+    "name": "Název",
+    "price": "Cena",
+    "searchPlaceholder": "Hledat podle kódu nebo názvu",
+    "minPricePlaceholder": "Cena od",
+    "maxPricePlaceholder": "Cena do",
+    "empty": "Nebyly nalezeny žádné produkty.",
+    "loadError": "Nepodařilo se načíst seznam produktů.",
+    "form": {
+      "title": "Přidat produkt",
+      "codePlaceholder": "např. P001",
+      "namePlaceholder": "např. Klávesnice",
+      "submit": "Přidat produkt",
+      "submitting": "Přidávání...",
+      "codeInvalid": "Kód je povinný a může mít maximálně 10 znaků.",
+      "nameInvalid": "Název je povinný a může mít maximálně 100 znaků.",
+      "priceInvalid": "Cena musí být větší než 0.",
+      "imageUrl": "URL obrázku",
+      "imageUrlPlaceholder": "https://example.com/image.jpg",
+      "descriptionPl": "Popis produktu v polštině",
+      "descriptionEn": "Popis produktu v angličtině",
+      "descriptionDe": "Popis produktu v němčině",
+      "descriptionCs": "Popis produktu v češtině"
+    },
+    "details": {
+      "back": "Zpět na seznam",
+      "title": "Detail produktu",
+      "description": "Popis",
+      "noDescription": "Popis produktu není k dispozici.",
+      "imageAlt": "Obrázek produktu",
+      "noImage": "Žádný obrázek",
+      "loadError": "Nepodařilo se načíst detail produktu.",
+      "delete": "Smazat produkt",
+      "deleting": "Mazání...",
+      "deleteConfirm": "Opravdu chcete smazat tento produkt?",
+      "deleteError": "Nepodařilo se smazat produkt."
+    }
+  },
+  "admin": {
+    "users": {
+      "title": "Administrátoři",
+      "subtitle": "Spravujte účty administrátorů a registraci nových účtů.",
+      "searchPlaceholder": "Hledat podle e-mailu",
+      "allStatuses": "Všechny stavy",
+      "pending": "Čeká na schválení",
+      "active": "Aktivní",
+      "activeBadge": "Aktivní",
+      "pendingBadge": "Čeká",
+      "approve": "Schválit",
+      "delete": "Smazat",
+      "empty": "Pro vybrané filtry nebyli nalezeni žádní administrátoři.",
+      "loading": "Načítání administrátorů...",
+      "loadError": "Nepodařilo se načíst seznam administrátorů.",
+      "approveError": "Nepodařilo se schválit administrátora.",
+      "deleteError": "Nepodařilo se smazat administrátora.",
+      "deleteConfirm": "Opravdu chcete smazat tohoto administrátora?"
+    },
+    "registrationSettings": {
+      "title": "Registrace administrátorů",
+      "loading": "Načítání nastavení...",
+      "current": "Aktuální stav:",
+      "enabled": "povolena",
+      "disabled": "zakázána",
+      "enable": "Povolit registraci",
+      "disable": "Zakázat registraci",
+      "saving": "Ukládání...",
+      "loadError": "Nepodařilo se načíst nastavení registrace.",
+      "saveError": "Nepodařilo se uložit nastavení registrace."
+    }
+  },
+  "sort": {
+    "email": "E-mail",
+    "status": "Stav",
+    "name": "Název",
+    "code": "Kód",
+    "price": "Cena"
+  },
+  "error": {
+    "auth": {
+      "email": {
+        "required": "E-mail je povinný.",
+        "invalid": "Zadejte platnou e-mailovou adresu.",
+        "alreadyexists": "Účet s touto e-mailovou adresou již existuje."
+      },
+      "password": {
+        "required": "Heslo je povinné.",
+        "tooshort": "Heslo je příliš krátké."
+      },
+      "invalidcredentials": "Neplatný e-mail nebo heslo.",
+      "user": {
+        "notactive": "Účet ještě nebyl aktivován.",
+        "notfound": "Uživatel nebyl nalezen.",
+        "cannotdeleteself": "Nemůžete smazat svůj vlastní účet.",
+        "cannotdeletelastactiveadmin": "Posledního aktivního administrátora nelze smazat."
+      },
+      "registration": {
+        "disabled": "Registrace je aktuálně zakázána."
+      },
+      "createfailed": "Nepodařilo se vytvořit účet."
+    },
+    "pagination": {
+      "pagenumber": {
+        "invalid": "Číslo stránky je neplatné."
+      },
+      "pagesize": {
+        "invalid": "Velikost stránky je neplatná."
+      },
+      "sortby": {
+        "invalid": "Vybrané pole řazení je neplatné."
+      },
+      "sortdirection": {
+        "invalid": "Směr řazení je neplatný."
+      }
+    },
+    "product": {
+      "createfailed": "Nepodařilo se vytvořit produkt.",
+      "notfound": "Produkt nebyl nalezen.",
+      "code": {
+        "required": "Kód produktu je povinný.",
+        "maxlength": "Kód produktu může mít maximálně 10 znaků.",
+        "alreadyexists": "Produkt s tímto kódem již existuje."
+      },
+      "name": {
+        "required": "Název produktu je povinný.",
+        "maxlength": "Název produktu může mít maximálně 100 znaků."
+      },
+      "price": {
+        "greaterthanzero": "Cena produktu musí být větší než 0."
+      },
+      "minprice": {
+        "invalid": "Minimální cena je neplatná."
+      },
+      "maxprice": {
+        "invalid": "Maximální cena je neplatná."
+      },
+      "pricerange": {
+        "invalid": "Cenové rozmezí je neplatné."
+      },
+      "imageurl": {
+        "invalid": "URL obrázku je neplatná."
+      },
+      "description": {
+        "language": {
+          "invalid": "Jazyk popisu produktu je neplatný."
+        },
+        "toolong": "Popis produktu je příliš dlouhý."
+      }
+    }
+  }
+}

@@ -1,1 +1,201 @@
-{}
+{
+  "app": {
+    "name": "MediaStore"
+  },
+  "nav": {
+    "products": "Products",
+    "admin": "Admin",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout"
+  },
+  "common": {
+    "email": "Email",
+    "password": "Password",
+    "role": "Role",
+    "status": "Status",
+    "actions": "Actions",
+    "filter": "Filter",
+    "clear": "Clear",
+    "loading": "Loading...",
+    "saving": "Saving...",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page",
+    "of": "of",
+    "total": "total",
+    "ascending": "Ascending",
+    "descending": "Descending"
+  },
+  "auth": {
+    "login": {
+      "title": "Login",
+      "submit": "Log in",
+      "submitting": "Logging in..."
+    },
+    "register": {
+      "title": "Admin registration",
+      "description": "The account will become active only after approval by an active administrator.",
+      "success": "The account has been submitted for approval. After approval, you will be able to log in.",
+      "submit": "Register account",
+      "submitting": "Submitting...",
+      "alreadyHaveAccount": "Already have an account? Log in",
+      "emailPlaceholder": "admin@example.com",
+      "passwordPlaceholder": "Minimum 8 characters",
+      "emailInvalid": "Enter a valid email address.",
+      "passwordInvalid": "The password must be at least 8 characters long."
+    }
+  },
+  "products": {
+    "title": "Product catalog",
+    "subtitle": "List of products available in the system.",
+    "code": "Code",
+    "name": "Name",
+    "price": "Price",
+    "searchPlaceholder": "Search by code or name",
+    "minPricePlaceholder": "Price from",
+    "maxPricePlaceholder": "Price to",
+    "empty": "No products found.",
+    "loadError": "Could not load the product list.",
+    "form": {
+      "title": "Add product",
+      "codePlaceholder": "e.g. P001",
+      "namePlaceholder": "e.g. Keyboard",
+      "submit": "Add product",
+      "submitting": "Adding...",
+      "codeInvalid": "Code is required and can have up to 10 characters.",
+      "nameInvalid": "Name is required and can have up to 100 characters.",
+      "priceInvalid": "Price must be greater than 0.",
+      "imageUrl": "Image URL",
+      "imageUrlPlaceholder": "https://example.com/image.jpg",
+      "descriptionPl": "Product description in Polish",
+      "descriptionEn": "Product description in English",
+      "descriptionDe": "Product description in German",
+      "descriptionCs": "Product description in Czech"
+    },
+    "details": {
+      "back": "Back to list",
+      "title": "Product details",
+      "description": "Description",
+      "noDescription": "No product description available.",
+      "imageAlt": "Product image",
+      "noImage": "No image",
+      "loadError": "Could not load product details.",
+      "delete": "Delete product",
+      "deleting": "Deleting...",
+      "deleteConfirm": "Are you sure you want to delete this product?",
+      "deleteError": "Could not delete the product."
+    }
+  },
+  "admin": {
+    "users": {
+      "title": "Administrators",
+      "subtitle": "Manage administrator accounts and new account registration.",
+      "searchPlaceholder": "Search by email",
+      "allStatuses": "All statuses",
+      "pending": "Pending",
+      "active": "Active",
+      "activeBadge": "Active",
+      "pendingBadge": "Pending",
+      "approve": "Approve",
+      "delete": "Delete",
+      "empty": "No administrators found for the selected filters.",
+      "loading": "Loading administrators...",
+      "loadError": "Could not load the administrator list.",
+      "approveError": "Could not approve the administrator.",
+      "deleteError": "Could not delete the administrator.",
+      "deleteConfirm": "Are you sure you want to delete this administrator?"
+    },
+    "registrationSettings": {
+      "title": "Administrator registration",
+      "loading": "Loading settings...",
+      "current": "Current status:",
+      "enabled": "enabled",
+      "disabled": "disabled",
+      "enable": "Enable registration",
+      "disable": "Disable registration",
+      "saving": "Saving...",
+      "loadError": "Could not load registration settings.",
+      "saveError": "Could not save registration settings."
+    }
+  },
+  "sort": {
+    "email": "Email",
+    "status": "Status",
+    "name": "Name",
+    "code": "Code",
+    "price": "Price"
+  },
+  "error": {
+    "auth": {
+      "email": {
+        "required": "Email is required.",
+        "invalid": "Enter a valid email address.",
+        "alreadyexists": "An account with this email address already exists."
+      },
+      "password": {
+        "required": "Password is required.",
+        "tooshort": "Password is too short."
+      },
+      "invalidcredentials": "Invalid email or password.",
+      "user": {
+        "notactive": "The account has not been activated yet.",
+        "notfound": "User not found.",
+        "cannotdeleteself": "You cannot delete your own account.",
+        "cannotdeletelastactiveadmin": "The last active administrator cannot be deleted."
+      },
+      "registration": {
+        "disabled": "Registration is currently disabled."
+      },
+      "createfailed": "Could not create the account."
+    },
+    "pagination": {
+      "pagenumber": {
+        "invalid": "Page number is invalid."
+      },
+      "pagesize": {
+        "invalid": "Page size is invalid."
+      },
+      "sortby": {
+        "invalid": "Selected sorting field is invalid."
+      },
+      "sortdirection": {
+        "invalid": "Sorting direction is invalid."
+      }
+    },
+    "product": {
+      "createfailed": "Could not create the product.",
+      "notfound": "Product not found.",
+      "code": {
+        "required": "Product code is required.",
+        "maxlength": "Product code can have up to 10 characters.",
+        "alreadyexists": "A product with this code already exists."
+      },
+      "name": {
+        "required": "Product name is required.",
+        "maxlength": "Product name can have up to 100 characters."
+      },
+      "price": {
+        "greaterthanzero": "Product price must be greater than 0."
+      },
+      "minprice": {
+        "invalid": "Minimum price is invalid."
+      },
+      "maxprice": {
+        "invalid": "Maximum price is invalid."
+      },
+      "pricerange": {
+        "invalid": "Price range is invalid."
+      },
+      "imageurl": {
+        "invalid": "Image URL is invalid."
+      },
+      "description": {
+        "language": {
+          "invalid": "Product description language is invalid."
+        },
+        "toolong": "Product description is too long."
+      }
+    }
+  }
+}
