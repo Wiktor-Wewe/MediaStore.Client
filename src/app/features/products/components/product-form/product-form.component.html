@@ -1,14 +1,18 @@
 <section class="card">
-  <h2>Dodaj produkt</h2>
+  <h2>{{ 'products.form.title' | transloco }}</h2>
 
   <form [formGroup]="form" (ngSubmit)="submit()" class="form">
     <label>
-      Kod
-      <input type="text" formControlName="code" placeholder="np. P001" />
+      {{ 'products.code' | transloco }}
+      <input
+        type="text"
+        formControlName="code"
+        [placeholder]="'products.form.codePlaceholder' | transloco"
+      />
     </label>
 
     @if (hasError('code')) {
-      <p class="error">Kod jest wymagany i może mieć maksymalnie 10 znaków.</p>
+      <p class="error">{{ 'products.form.codeInvalid' | transloco }}</p>
     }
 
     @if (apiErrors()['Code']) {
@@ -16,12 +20,16 @@
     }
 
     <label>
-      Nazwa
-      <input type="text" formControlName="name" placeholder="np. Klawiatura" />
+      {{ 'products.name' | transloco }}
+      <input
+        type="text"
+        formControlName="name"
+        [placeholder]="'products.form.namePlaceholder' | transloco"
+      />
     </label>
 
     @if (hasError('name')) {
-      <p class="error">Nazwa jest wymagana i może mieć maksymalnie 100 znaków.</p>
+      <p class="error">{{ 'products.form.nameInvalid' | transloco }}</p>
     }
 
     @if (apiErrors()['Name']) {
@@ -29,12 +37,12 @@
     }
 
     <label>
-      Cena
+      {{ 'products.price' | transloco }}
       <input type="number" formControlName="price" min="0.01" step="0.01" />
     </label>
 
     @if (hasError('price')) {
-      <p class="error">Cena musi być większa od 0.</p>
+      <p class="error">{{ 'products.form.priceInvalid' | transloco }}</p>
     }
 
     @if (apiErrors()['Price']) {
@@ -42,7 +50,7 @@
     }
 
     <button type="submit" [disabled]="isSubmitting()">
-      {{ isSubmitting() ? 'Dodawanie...' : 'Dodaj produkt' }}
+      {{ (isSubmitting() ? 'products.form.submitting' : 'products.form.submit') | transloco }}
     </button>
   </form>
 </section>

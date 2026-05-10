@@ -1,18 +1,18 @@
 <header class="app-header">
-  <a routerLink="/products" class="brand">MediaStore</a>
+  <a routerLink="/products" class="brand">{{ 'app.name' | transloco }}</a>
 
   <nav>
-    <a routerLink="/products" routerLinkActive="active">Produkty</a>
+    <a routerLink="/products" routerLinkActive="active">{{ 'nav.products' | transloco }}</a>
 
     @if (authService.isAdmin()) {
-      <a routerLink="/admin/users" routerLinkActive="active">Admin</a>
+      <a routerLink="/admin/users" routerLinkActive="active">{{ 'nav.admin' | transloco }}</a>
     }
 
     @if (authService.isAuthenticated()) {
-      <button type="button" (click)="logout()">Wyloguj</button>
+      <button type="button" (click)="logout()">{{ 'nav.logout' | transloco }}</button>
     } @else {
-      <a routerLink="/login" routerLinkActive="active">Logowanie</a>
-      <a routerLink="/register" routerLinkActive="active">Rejestracja</a>
+      <a routerLink="/login" routerLinkActive="active">{{ 'nav.login' | transloco }}</a>
+      <a routerLink="/register" routerLinkActive="active">{{ 'nav.register' | transloco }}</a>
     }
   </nav>
   <app-language-switcher />

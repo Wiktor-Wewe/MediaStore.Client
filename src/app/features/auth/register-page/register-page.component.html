@@ -11,7 +11,11 @@
   <form [formGroup]="form" (ngSubmit)="submit()" class="form">
     <label>
       {{ 'common.email' | transloco }}
-      <input type="email" formControlName="email" placeholder="admin@example.com" />
+      <input
+        type="email"
+        formControlName="email"
+        [placeholder]="'auth.register.emailPlaceholder'"
+      />
     </label>
 
     @if (form.controls.email.touched && form.controls.email.invalid) {
@@ -19,12 +23,16 @@
     }
 
     @if (apiErrors()['Email']) {
-      <p class="error">{{ translateError(apiErrors()['Email'][0]) }}</p>
+      <p class="error">{{ apiErrors()['Email'][0] | apiError }}</p>
     }
 
     <label>
       {{ 'common.password' | transloco }}
-      <input type="password" formControlName="password" placeholder="Minimum 8 znaków" />
+      <input
+        type="password"
+        formControlName="password"
+        [placeholder]="'auth.register.passwordPlaceholder'"
+      />
     </label>
 
     @if (form.controls.password.touched && form.controls.password.invalid) {
@@ -32,11 +40,11 @@
     }
 
     @if (apiErrors()['Password']) {
-      <p class="error">{{ translateError(apiErrors()['Password'][0]) }}</p>
+      <p class="error">{{ apiErrors()['Password'][0] | apiError }}</p>
     }
 
     @if (apiErrors()['General']) {
-      <p class="error">{{ translateError(apiErrors()['General'][0]) }}</p>
+      <p class="error">{{ apiErrors()['General'][0] | apiError }}</p>
     }
 
     <button type="submit" [disabled]="isSubmitting()">

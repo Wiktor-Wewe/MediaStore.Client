@@ -5,7 +5,6 @@ import { PagedResponse } from '../../../core/api/paged-response.model';
 import { RegistrationSettingsComponent } from '../registration-settings/registration-settings.component';
 import { AdminUser, AdminUserFilters } from '../models/admin-user.model';
 import { AdminService } from '../services/admin.service';
-import { translateError } from '../../../shared/utils/error-code-map';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 @Component({
@@ -148,7 +147,7 @@ export class UsersPageComponent implements OnInit {
 
         this.error.set(
           firstError
-            ? translateError(firstError)
+            ? this.transloco.translate(firstError.toLowerCase())
             : this.transloco.translate('admin.users.deleteError')
         );
       },

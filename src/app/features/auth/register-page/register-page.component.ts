@@ -4,13 +4,13 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ValidationProblemDetails } from '../../../core/api/validation-error.model';
 import { AuthService } from '../../../core/auth/auth.service';
-import { translateError } from '../../../shared/utils/error-code-map';
 import { TranslocoPipe } from '@jsverse/transloco';
+import { ApiErrorPipe } from '../../../shared/pipes/api-error.pipe';
 
 @Component({
   selector: 'app-register-page',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, TranslocoPipe],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, TranslocoPipe, ApiErrorPipe],
   templateUrl: './register-page.component.html',
   styleUrl: './register-page.component.scss',
 })
@@ -60,9 +60,5 @@ export class RegisterPageComponent {
         this.isSubmitting.set(false);
       },
     });
-  }
-
-  translateError(code: string): string {
-    return translateError(code);
   }
 }

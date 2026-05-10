@@ -106,34 +106,66 @@
     "code": "Kod",
     "price": "Cena"
   },
-  "errors": {
-    "Error.Auth.Email.Required": "Email jest wymagany.",
-    "Error.Auth.Email.Invalid": "Podaj poprawny adres email.",
-    "Error.Auth.Email.AlreadyExists": "Konto z tym adresem email już istnieje.",
-    "Error.Auth.Password.Required": "Hasło jest wymagane.",
-    "Error.Auth.Password.TooShort": "Hasło jest za krótkie.",
-    "Error.Auth.InvalidCredentials": "Nieprawidłowy email lub hasło.",
-    "Error.Auth.User.NotActive": "Konto nie zostało jeszcze aktywowane.",
-    "Error.Auth.User.NotFound": "Nie znaleziono użytkownika.",
-    "Error.Auth.Registration.Disabled": "Rejestracja jest obecnie wyłączona.",
-    "Error.Auth.CreateFailed": "Nie udało się utworzyć konta.",
-    "Error.Auth.User.CannotDeleteSelf": "Nie możesz usunąć własnego konta.",
-    "Error.Auth.User.CannotDeleteLastActiveAdmin": "Nie można usunąć ostatniego aktywnego administratora.",
-
-    "Error.Pagination.PageNumber.Invalid": "Numer strony jest nieprawidłowy.",
-    "Error.Pagination.PageSize.Invalid": "Rozmiar strony jest nieprawidłowy.",
-    "Error.Pagination.SortBy.Invalid": "Wybrane sortowanie jest nieprawidłowe.",
-    "Error.Pagination.SortDirection.Invalid": "Kierunek sortowania jest nieprawidłowy.",
-
-    "Error.Product.CreateFailed": "Nie udało się utworzyć produktu.",
-    "Error.Product.Code.Required": "Kod produktu jest wymagany.",
-    "Error.Product.Code.MaxLength": "Kod produktu może mieć maksymalnie 10 znaków.",
-    "Error.Product.Code.AlreadyExists": "Produkt o takim kodzie już istnieje.",
-    "Error.Product.Name.Required": "Nazwa produktu jest wymagana.",
-    "Error.Product.Name.MaxLength": "Nazwa produktu może mieć maksymalnie 100 znaków.",
-    "Error.Product.Price.GreaterThanZero": "Cena produktu musi być większa od 0.",
-    "Error.Product.MinPrice.Invalid": "Minimalna cena jest nieprawidłowa.",
-    "Error.Product.MaxPrice.Invalid": "Maksymalna cena jest nieprawidłowa.",
-    "Error.Product.PriceRange.Invalid": "Zakres cen jest nieprawidłowy."
+"error": {
+    "auth": {
+      "email": {
+        "required": "Email jest wymagany.",
+        "invalid": "Podaj poprawny adres email.",
+        "alreadyexists": "Konto z tym adresem email już istnieje."
+      },
+      "password": {
+        "required": "Hasło jest wymagane.",
+        "tooshort": "Hasło jest za krótkie."
+      },
+      "invalidcredentials": "Nieprawidłowy email lub hasło.",
+      "user": {
+        "notactive": "Konto nie zostało jeszcze aktywowane.",
+        "notfound": "Nie znaleziono użytkownika.",
+        "cannotdeleteself": "Nie możesz usunąć własnego konta.",
+        "cannotdeletelastactiveadmin": "Nie można usunąć ostatniego aktywnego administratora."
+      },
+      "registration": {
+        "disabled": "Rejestracja jest obecnie wyłączona."
+      },
+      "createfailed": "Nie udało się utworzyć konta."
+    },
+    "pagination": {
+      "pagenumber": {
+        "invalid": "Numer strony jest nieprawidłowy."
+      },
+      "pagesize": {
+        "invalid": "Rozmiar strony jest nieprawidłowy."
+      },
+      "sortby": {
+        "invalid": "Wybrane sortowanie jest nieprawidłowe."
+      },
+      "sortdirection": {
+        "invalid": "Kierunek sortowania jest nieprawidłowy."
+      }
+    },
+    "product": {
+      "createfailed": "Nie udało się utworzyć produktu.",
+      "code": {
+        "required": "Kod produktu jest wymagany.",
+        "maxlength": "Kod produktu może mieć maksymalnie 10 znaków.",
+        "alreadyexists": "Produkt o takim kodzie już istnieje."
+      },
+      "name": {
+        "required": "Nazwa produktu jest wymagana.",
+        "maxlength": "Nazwa produktu może mieć maksymalnie 100 znaków."
+      },
+      "price": {
+        "greaterthanzero": "Cena produktu musi być większa od 0."
+      },
+      "minprice": {
+        "invalid": "Minimalna cena jest nieprawidłowa."
+      },
+      "maxprice": {
+        "invalid": "Maksymalna cena jest nieprawidłowa."
+      },
+      "pricerange": {
+        "invalid": "Zakres cen jest nieprawidłowy."
+      }
+    }
   }
 }

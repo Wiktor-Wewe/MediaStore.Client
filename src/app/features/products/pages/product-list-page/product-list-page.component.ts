@@ -11,7 +11,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
 @Component({
   selector: 'app-product-list-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, ProductFormComponent],
+  imports: [CommonModule, FormsModule, ProductFormComponent, TranslocoPipe],
   templateUrl: './product-list-page.component.html',
   styleUrl: './product-list-page.component.scss',
 })

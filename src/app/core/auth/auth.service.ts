@@ -8,14 +8,31 @@ const TOKEN_KEY = 'media_store_access_token';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private readonly tokenSignal = signal<string | null>(localStorage.getItem(TOKEN_KEY));
+  private readonly tokenSignal = signal<string | null>(this.getValidStoredToken());
 
   readonly token = computed(() => this.tokenSignal());
-  readonly isAuthenticated = computed(
-    () => !!this.tokenSignal() && !this.isTokenExpired(this.tokenSignal())
-  );
-  readonly currentUser = computed(() => this.decodeToken(this.tokenSignal()));
+
+  readonly currentUser = computed(() => {
+    const token = this.tokenSignal();
+
+    if (!token) {
+      return null;
+    }
+
+    if (this.isTokenExpired(token)) {
+      return null;
+    }
+
+    return this.decodeToken(token);
+  });
+
+  readonly isAuthenticated = computed(() => this.currentUser() !== null);
+
   readonly isAdmin = computed(() => {
+    if (!this.isAuthenticated()) {
+      return false;
+    }
+
     const user = this.currentUser();
 
     return (
@@ -23,6 +40,7 @@ export class AuthService {
       user?.['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] === 'Admin'
     );
   });
+
   constructor(private readonly http: HttpClient) {}
 
   login(request: LoginRequest) {
@@ -44,7 +62,25 @@ export class AuthService {
   }
 
   getAccessToken(): string | null {
-    return this.tokenSignal();
+    const token = this.tokenSignal();
+
+    if (!token || this.isTokenExpired(token)) {
+      localStorage.removeItem(TOKEN_KEY);
+      return null;
+    }
+
+    return token;
+  }
+
+  private getValidStoredToken(): string | null {
+    const token = localStorage.getItem(TOKEN_KEY);
+
+    if (!token || this.isTokenExpired(token)) {
+      localStorage.removeItem(TOKEN_KEY);
+      return null;
+    }
+
+    return token;
   }
 
   private decodeToken(token: string | null): JwtPayload | null {
@@ -52,7 +88,13 @@ export class AuthService {
 
     try {
       const payload = token.split('.')[1];
+
+      if (!payload) {
+        return null;
+      }
+
       const decoded = atob(payload.replace(/-/g, '+').replace(/_/g, '/'));
+
       return JSON.parse(decoded) as JwtPayload;
     } catch {
       return null;
@@ -64,6 +106,6 @@ export class AuthService {
 
     if (!payload?.exp) return true;
 
-    return payload.exp * 1000 < Date.now();
+    return payload.exp * 1000 <= Date.now();
   }
 }

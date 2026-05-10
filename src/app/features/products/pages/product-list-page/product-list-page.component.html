@@ -1,8 +1,8 @@
 <div class="page">
   <header class="page-header">
     <div>
-      <h1>Katalog produktów</h1>
-      <p>Lista produktów dostępnych w systemie.</p>
+      <h1>{{ 'products.title' | transloco }}</h1>
+      <p>{{ 'products.subtitle' | transloco }}</p>
     </div>
   </header>
 
@@ -13,49 +13,49 @@
   <section class="card filters">
     <input
       type="text"
-      placeholder="Szukaj po kodzie lub nazwie"
+      [placeholder]="'products.searchPlaceholder' | transloco"
       [ngModel]="filters().search"
       (ngModelChange)="updateSearch($event)"
     />
 
     <input
       type="number"
-      placeholder="Cena od"
+      [placeholder]="'products.minPricePlaceholder' | transloco"
       [ngModel]="filters().minPrice"
       (ngModelChange)="filters.update((f) => ({ ...f, minPrice: $event }))"
     />
 
     <input
       type="number"
-      placeholder="Cena do"
+      [placeholder]="'products.maxPricePlaceholder' | transloco"
       [ngModel]="filters().maxPrice"
       (ngModelChange)="filters.update((f) => ({ ...f, maxPrice: $event }))"
     />
 
     <select [ngModel]="filters().sortBy" (ngModelChange)="updateSortBy($event)">
-      <option value="name">Nazwa</option>
-      <option value="code">Kod</option>
-      <option value="price">Cena</option>
+      <option value="name">{{ 'sort.name' | transloco }}</option>
+      <option value="code">{{ 'sort.code' | transloco }}</option>
+      <option value="price">{{ 'sort.price' | transloco }}</option>
     </select>
 
     <select [ngModel]="filters().sortDirection" (ngModelChange)="updateSortDirection($event)">
-      <option value="asc">Rosnąco</option>
-      <option value="desc">Malejąco</option>
+      <option value="asc">{{ 'common.ascending' | transloco }}</option>
+      <option value="desc">{{ 'common.descending' | transloco }}</option>
     </select>
 
-    <button type="button" (click)="applyFilters()">Filtruj</button>
+    <button type="button" (click)="applyFilters()">{{ 'common.filter' | transloco }}</button>
   </section>
 
   <section class="card">
     @if (isLoading()) {
-      <p>Ładowanie...</p>
+      <p>{{ 'common.loading' | transloco }}</p>
     } @else {
       <table>
         <thead>
           <tr>
-            <th>Kod</th>
-            <th>Nazwa</th>
-            <th>Cena</th>
+            <th>{{ 'products.code' | transloco }}</th>
+            <th>{{ 'products.name' | transloco }}</th>
+            <th>{{ 'products.price' | transloco }}</th>
           </tr>
         </thead>
 
@@ -68,7 +68,7 @@
             </tr>
           } @empty {
             <tr>
-              <td colspan="3">Brak produktów.</td>
+              <td colspan="3">{{ 'products.empty' | transloco }}</td>
             </tr>
           }
         </tbody>
@@ -80,17 +80,20 @@
           [disabled]="filters().pageNumber === 1"
           (click)="changePage(filters().pageNumber - 1)"
         >
-          Poprzednia
+          {{ 'common.previous' | transloco }}
         </button>
 
-        <span> Strona {{ filters().pageNumber }} z {{ totalPages() || 1 }} </span>
+        <span>
+          {{ 'common.page' | transloco }} {{ filters().pageNumber }} {{ 'common.of' | transloco }}
+          {{ totalPages() || 1 }}
+        </span>
 
         <button
           type="button"
           [disabled]="filters().pageNumber >= totalPages()"
           (click)="changePage(filters().pageNumber + 1)"
         >
-          Następna
+          {{ 'common.next' | transloco }}
         </button>
       </footer>
     }
