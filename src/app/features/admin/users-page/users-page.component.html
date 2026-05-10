@@ -12,27 +12,30 @@
     <input
       type="text"
       [placeholder]="'admin.users.searchPlaceholder' | transloco"
-      [ngModel]="filters().email"
+      [ngModel]="draftFilters().email"
       (ngModelChange)="updateEmail($event)"
     />
 
-    <select [ngModel]="filters().status" (ngModelChange)="updateStatus($event)">
+    <select [ngModel]="draftFilters().status" (ngModelChange)="updateStatus($event)">
       <option [ngValue]="null">{{ 'admin.users.allStatuses' | transloco }}</option>
       <option value="Pending">{{ 'admin.users.pending' | transloco }}</option>
       <option value="Active">{{ 'admin.users.active' | transloco }}</option>
     </select>
 
-    <select [ngModel]="filters().sortBy" (ngModelChange)="updateSortBy($event)">
+    <select [ngModel]="draftFilters().sortBy" (ngModelChange)="updateSortBy($event)">
       <option value="email">{{ 'sort.email' | transloco }}</option>
       <option value="status">{{ 'sort.status' | transloco }}</option>
     </select>
 
-    <select [ngModel]="filters().sortDirection" (ngModelChange)="updateSortDirection($event)">
+    <select [ngModel]="draftFilters().sortDirection" (ngModelChange)="updateSortDirection($event)">
       <option value="asc">{{ 'common.ascending' | transloco }}</option>
       <option value="desc">{{ 'common.descending' | transloco }}</option>
     </select>
 
-    <button type="button" (click)="applyFilters()">{{ 'common.filter' | transloco }}</button>
+    <button type="button" (click)="applyFilters()" [disabled]="!hasFilterChanges()">
+      {{ 'common.filter' | transloco }}
+    </button>
+
     <button type="button" class="secondary-button" (click)="clearFilters()">
       {{ 'common.clear' | transloco }}
     </button>
@@ -65,13 +68,13 @@
               <td>{{ user.role }}</td>
               <td>
                 @if (user.status === 'Active') {
-                  <span class="badge badge-success">{{
-                    'admin.users.activeBadge' | transloco
-                  }}</span>
+                  <span class="badge badge-success">
+                    {{ 'admin.users.activeBadge' | transloco }}
+                  </span>
                 } @else {
-                  <span class="badge badge-warning">{{
-                    'admin.users.pendingBadge' | transloco
-                  }}</span>
+                  <span class="badge badge-warning">
+                    {{ 'admin.users.pendingBadge' | transloco }}
+                  </span>
                 }
               </td>
               <td>
@@ -99,21 +102,22 @@
       <footer class="pagination">
         <button
           type="button"
-          [disabled]="filters().pageNumber === 1"
-          (click)="changePage(filters().pageNumber - 1)"
+          [disabled]="appliedFilters().pageNumber === 1"
+          (click)="changePage(appliedFilters().pageNumber - 1)"
         >
           {{ 'common.previous' | transloco }}
         </button>
 
         <span>
-          {{ 'common.page' | transloco }} {{ filters().pageNumber }} {{ 'common.of' | transloco }}
-          {{ totalPages() || 1 }} — {{ 'common.total' | transloco }}: {{ totalCount() }}
+          {{ 'common.page' | transloco }} {{ appliedFilters().pageNumber }}
+          {{ 'common.of' | transloco }} {{ totalPages() || 1 }} — {{ 'common.total' | transloco }}:
+          {{ totalCount() }}
         </span>
 
         <button
           type="button"
-          [disabled]="filters().pageNumber >= totalPages()"
-          (click)="changePage(filters().pageNumber + 1)"
+          [disabled]="appliedFilters().pageNumber >= totalPages()"
+          (click)="changePage(appliedFilters().pageNumber + 1)"
         >
           {{ 'common.next' | transloco }}
         </button>

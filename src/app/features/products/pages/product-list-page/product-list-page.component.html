@@ -14,36 +14,38 @@
     <input
       type="text"
       [placeholder]="'products.searchPlaceholder' | transloco"
-      [ngModel]="filters().search"
+      [ngModel]="draftFilters().search"
       (ngModelChange)="updateSearch($event)"
     />
 
     <input
       type="number"
       [placeholder]="'products.minPricePlaceholder' | transloco"
-      [ngModel]="filters().minPrice"
-      (ngModelChange)="filters.update((f) => ({ ...f, minPrice: $event }))"
+      [ngModel]="draftFilters().minPrice"
+      (ngModelChange)="updateMinPrice($event)"
     />
 
     <input
       type="number"
       [placeholder]="'products.maxPricePlaceholder' | transloco"
-      [ngModel]="filters().maxPrice"
-      (ngModelChange)="filters.update((f) => ({ ...f, maxPrice: $event }))"
+      [ngModel]="draftFilters().maxPrice"
+      (ngModelChange)="updateMaxPrice($event)"
     />
 
-    <select [ngModel]="filters().sortBy" (ngModelChange)="updateSortBy($event)">
+    <select [ngModel]="draftFilters().sortBy" (ngModelChange)="updateSortBy($event)">
       <option value="name">{{ 'sort.name' | transloco }}</option>
       <option value="code">{{ 'sort.code' | transloco }}</option>
       <option value="price">{{ 'sort.price' | transloco }}</option>
     </select>
 
-    <select [ngModel]="filters().sortDirection" (ngModelChange)="updateSortDirection($event)">
+    <select [ngModel]="draftFilters().sortDirection" (ngModelChange)="updateSortDirection($event)">
       <option value="asc">{{ 'common.ascending' | transloco }}</option>
       <option value="desc">{{ 'common.descending' | transloco }}</option>
     </select>
 
-    <button type="button" (click)="applyFilters()">{{ 'common.filter' | transloco }}</button>
+    <button type="button" (click)="applyFilters()" [disabled]="!hasFilterChanges()">
+      {{ 'common.filter' | transloco }}
+    </button>
   </section>
 
   <section class="card">
@@ -77,21 +79,21 @@
       <footer class="pagination">
         <button
           type="button"
-          [disabled]="filters().pageNumber === 1"
-          (click)="changePage(filters().pageNumber - 1)"
+          [disabled]="appliedFilters().pageNumber === 1"
+          (click)="changePage(appliedFilters().pageNumber - 1)"
         >
           {{ 'common.previous' | transloco }}
         </button>
 
         <span>
-          {{ 'common.page' | transloco }} {{ filters().pageNumber }} {{ 'common.of' | transloco }}
-          {{ totalPages() || 1 }}
+          {{ 'common.page' | transloco }} {{ appliedFilters().pageNumber }}
+          {{ 'common.of' | transloco }} {{ totalPages() || 1 }}
         </span>
 
         <button
           type="button"
-          [disabled]="filters().pageNumber >= totalPages()"
-          (click)="changePage(filters().pageNumber + 1)"
+          [disabled]="appliedFilters().pageNumber >= totalPages()"
+          (click)="changePage(appliedFilters().pageNumber + 1)"
         >
           {{ 'common.next' | transloco }}
         </button>

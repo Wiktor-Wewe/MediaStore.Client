@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { PagedResponse } from '../../../core/api/paged-response.model';
-import { RegistrationSettingsComponent } from '../registration-settings/registration-settings.component';
-import { AdminUser, AdminUserFilters } from '../models/admin-user.model';
-import { AdminService } from '../services/admin.service';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
+import { PagedResponse } from '../../../core/api/paged-response.model';
+import { AdminService } from '../services/admin.service';
+import { AdminUser, AdminUserFilters } from '../models/admin-user.model';
+import { RegistrationSettingsComponent } from '../registration-settings/registration-settings.component';
 
 @Component({
   selector: 'app-users-page',
@@ -24,13 +24,34 @@ export class UsersPageComponent implements OnInit {
   readonly isLoading = signal(false);
   readonly error = signal<string | null>(null);
 
-  readonly filters = signal<AdminUserFilters>({
+  readonly appliedFilters = signal<AdminUserFilters>({
     email: '',
     status: null,
     pageNumber: 1,
     pageSize: 10,
     sortBy: 'email',
     sortDirection: 'asc',
+  });
+
+  readonly draftFilters = signal<AdminUserFilters>({
+    email: '',
+    status: null,
+    pageNumber: 1,
+    pageSize: 10,
+    sortBy: 'email',
+    sortDirection: 'asc',
+  });
+
+  readonly hasFilterChanges = computed(() => {
+    const draft = this.draftFilters();
+    const applied = this.appliedFilters();
+
+    return (
+      draft.email !== applied.email ||
+      draft.status !== applied.status ||
+      draft.sortBy !== applied.sortBy ||
+      draft.sortDirection !== applied.sortDirection
+    );
   });
 
   ngOnInit(): void {
@@ -41,7 +62,7 @@ export class UsersPageComponent implements OnInit {
     this.isLoading.set(true);
     this.error.set(null);
 
-    this.adminService.getUsers(this.filters()).subscribe({
+    this.adminService.getUsers(this.appliedFilters()).subscribe({
       next: (response: PagedResponse<AdminUser>) => {
         this.users.set(response.items);
         this.totalCount.set(response.totalCount);
@@ -58,23 +79,29 @@ export class UsersPageComponent implements OnInit {
   }
 
   applyFilters(): void {
-    this.filters.update((current) => ({
-      ...current,
+    const nextFilters = {
+      ...this.draftFilters(),
       pageNumber: 1,
-    }));
+    };
+
+    this.appliedFilters.set(nextFilters);
+    this.draftFilters.set(nextFilters);
 
     this.loadUsers();
   }
 
   clearFilters(): void {
-    this.filters.set({
+    const defaultFilters: AdminUserFilters = {
       email: '',
       status: null,
       pageNumber: 1,
       pageSize: 10,
       sortBy: 'email',
       sortDirection: 'asc',
-    });
+    };
+
+    this.appliedFilters.set(defaultFilters);
+    this.draftFilters.set(defaultFilters);
 
     this.loadUsers();
   }
@@ -84,7 +111,12 @@ export class UsersPageComponent implements OnInit {
       return;
     }
 
-    this.filters.update((current) => ({
+    this.appliedFilters.update((current) => ({
+      ...current,
+      pageNumber,
+    }));
+
+    this.draftFilters.update((current) => ({
       ...current,
       pageNumber,
     }));
@@ -93,35 +125,31 @@ export class UsersPageComponent implements OnInit {
   }
 
   updateEmail(value: string): void {
-    this.filters.update((current) => ({
+    this.draftFilters.update((current) => ({
       ...current,
       email: value,
     }));
   }
 
   updateStatus(value: string): void {
-    this.filters.update((current) => ({
+    this.draftFilters.update((current) => ({
       ...current,
       status: value ? (value as 'Pending' | 'Active') : null,
     }));
   }
 
   updateSortBy(value: 'email' | 'status'): void {
-    this.filters.update((current) => ({
+    this.draftFilters.update((current) => ({
       ...current,
       sortBy: value,
     }));
-
-    this.applyFilters();
   }
 
   updateSortDirection(value: 'asc' | 'desc'): void {
-    this.filters.update((current) => ({
+    this.draftFilters.update((current) => ({
       ...current,
       sortDirection: value,
     }));
-
-    this.applyFilters();
   }
 
   approveUser(id: string): void {
