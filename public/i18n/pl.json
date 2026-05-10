@@ -1,0 +1,139 @@
+{
+  "app": {
+    "name": "MediaStore"
+  },
+  "nav": {
+    "products": "Produkty",
+    "admin": "Admin",
+    "login": "Logowanie",
+    "register": "Rejestracja",
+    "logout": "Wyloguj"
+  },
+  "common": {
+    "email": "Email",
+    "password": "Hasło",
+    "role": "Rola",
+    "status": "Status",
+    "actions": "Akcje",
+    "filter": "Filtruj",
+    "clear": "Wyczyść",
+    "loading": "Ładowanie...",
+    "saving": "Zapisywanie...",
+    "previous": "Poprzednia",
+    "next": "Następna",
+    "page": "Strona",
+    "of": "z",
+    "total": "razem",
+    "ascending": "Rosnąco",
+    "descending": "Malejąco"
+  },
+  "auth": {
+    "login": {
+      "title": "Logowanie",
+      "submit": "Zaloguj",
+      "submitting": "Logowanie..."
+    },
+    "register": {
+      "title": "Rejestracja admina",
+      "description": "Konto będzie aktywne dopiero po zatwierdzeniu przez aktywnego administratora.",
+      "success": "Konto zostało zgłoszone do akceptacji. Po zatwierdzeniu będzie można się zalogować.",
+      "submit": "Zarejestruj konto",
+      "submitting": "Wysyłanie...",
+      "alreadyHaveAccount": "Masz już konto? Zaloguj się",
+      "emailPlaceholder": "admin@example.com",
+      "passwordPlaceholder": "Minimum 8 znaków",
+      "emailInvalid": "Podaj poprawny adres email.",
+      "passwordInvalid": "Hasło musi mieć minimum 8 znaków."
+    }
+  },
+  "products": {
+    "title": "Katalog produktów",
+    "subtitle": "Lista produktów dostępnych w systemie.",
+    "code": "Kod",
+    "name": "Nazwa",
+    "price": "Cena",
+    "searchPlaceholder": "Szukaj po kodzie lub nazwie",
+    "minPricePlaceholder": "Cena od",
+    "maxPricePlaceholder": "Cena do",
+    "empty": "Brak produktów.",
+    "form": {
+      "title": "Dodaj produkt",
+      "codePlaceholder": "np. P001",
+      "namePlaceholder": "np. Klawiatura",
+      "submit": "Dodaj produkt",
+      "submitting": "Dodawanie...",
+      "codeInvalid": "Kod jest wymagany i może mieć maksymalnie 10 znaków.",
+      "nameInvalid": "Nazwa jest wymagana i może mieć maksymalnie 100 znaków.",
+      "priceInvalid": "Cena musi być większa od 0."
+    }
+  },
+  "admin": {
+    "users": {
+      "title": "Administratorzy",
+      "subtitle": "Zarządzaj kontami administratorów oraz rejestracją nowych kont.",
+      "searchPlaceholder": "Szukaj po emailu",
+      "allStatuses": "Wszystkie statusy",
+      "pending": "Oczekujące",
+      "active": "Aktywne",
+      "activeBadge": "Aktywny",
+      "pendingBadge": "Oczekuje",
+      "approve": "Zatwierdź",
+      "delete": "Usuń",
+      "empty": "Brak administratorów dla wybranych filtrów.",
+      "loading": "Ładowanie administratorów...",
+      "loadError": "Nie udało się pobrać listy administratorów.",
+      "approveError": "Nie udało się zatwierdzić administratora.",
+      "deleteError": "Nie udało się usunąć administratora.",
+      "deleteConfirm": "Czy na pewno chcesz usunąć tego administratora?"
+    },
+    "registrationSettings": {
+      "title": "Rejestracja administratorów",
+      "loading": "Ładowanie ustawień...",
+      "current": "Aktualnie:",
+      "enabled": "włączona",
+      "disabled": "wyłączona",
+      "enable": "Włącz rejestrację",
+      "disable": "Wyłącz rejestrację",
+      "saving": "Zapisywanie...",
+      "loadError": "Nie udało się pobrać ustawień rejestracji.",
+      "saveError": "Nie udało się zapisać ustawień rejestracji."
+    }
+  },
+  "sort": {
+    "email": "Email",
+    "status": "Status",
+    "name": "Nazwa",
+    "code": "Kod",
+    "price": "Cena"
+  },
+  "errors": {
+    "Error.Auth.Email.Required": "Email jest wymagany.",
+    "Error.Auth.Email.Invalid": "Podaj poprawny adres email.",
+    "Error.Auth.Email.AlreadyExists": "Konto z tym adresem email już istnieje.",
+    "Error.Auth.Password.Required": "Hasło jest wymagane.",
+    "Error.Auth.Password.TooShort": "Hasło jest za krótkie.",
+    "Error.Auth.InvalidCredentials": "Nieprawidłowy email lub hasło.",
+    "Error.Auth.User.NotActive": "Konto nie zostało jeszcze aktywowane.",
+    "Error.Auth.User.NotFound": "Nie znaleziono użytkownika.",
+    "Error.Auth.Registration.Disabled": "Rejestracja jest obecnie wyłączona.",
+    "Error.Auth.CreateFailed": "Nie udało się utworzyć konta.",
+    "Error.Auth.User.CannotDeleteSelf": "Nie możesz usunąć własnego konta.",
+    "Error.Auth.User.CannotDeleteLastActiveAdmin": "Nie można usunąć ostatniego aktywnego administratora.",
+
+    "Error.Pagination.PageNumber.Invalid": "Numer strony jest nieprawidłowy.",
+    "Error.Pagination.PageSize.Invalid": "Rozmiar strony jest nieprawidłowy.",
+    "Error.Pagination.SortBy.Invalid": "Wybrane sortowanie jest nieprawidłowe.",
+    "Error.Pagination.SortDirection.Invalid": "Kierunek sortowania jest nieprawidłowy.",
+
+    "Error.Product.CreateFailed": "Nie udało się utworzyć produktu.",
+    "Error.Product.Code.Required": "Kod produktu jest wymagany.",
+    "Error.Product.Code.MaxLength": "Kod produktu może mieć maksymalnie 10 znaków.",
+    "Error.Product.Code.AlreadyExists": "Produkt o takim kodzie już istnieje.",
+    "Error.Product.Name.Required": "Nazwa produktu jest wymagana.",
+    "Error.Product.Name.MaxLength": "Nazwa produktu może mieć maksymalnie 100 znaków.",
+    "Error.Product.Price.GreaterThanZero": "Cena produktu musi być większa od 0.",
+    "Error.Product.MinPrice.Invalid": "Minimalna cena jest nieprawidłowa.",
+    "Error.Product.MaxPrice.Invalid": "Maksymalna cena jest nieprawidłowa.",
+    "Error.Product.PriceRange.Invalid": "Zakres cen jest nieprawidłowy."
+  }
+}

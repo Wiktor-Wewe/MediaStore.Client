@@ -1,0 +1,11 @@
+<div class="language-switcher">
+  @for (language of languages; track language.code) {
+    <button
+      type="button"
+      [class.active]="activeLang === language.code"
+      (click)="setLanguage(language.code)"
+    >
+      {{ language.label }}
+    </button>
+  }
+</div>

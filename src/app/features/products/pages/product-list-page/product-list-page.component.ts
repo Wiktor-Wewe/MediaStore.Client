@@ -6,6 +6,7 @@ import { Product, ProductFilters } from '../../models/product.model';
 import { PagedResponse } from '../../../../core/api/paged-response.model';
 import { AuthService } from '../../../../core/auth/auth.service';
 import { ProductFormComponent } from '../../components/product-form/product-form.component';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-product-list-page',

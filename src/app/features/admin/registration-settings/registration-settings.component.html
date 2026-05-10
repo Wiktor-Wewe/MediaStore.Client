@@ -1,14 +1,19 @@
 <section class="card registration-panel">
   <div>
-    <strong>Rejestracja administratorów</strong>
+    <strong>{{ 'admin.registrationSettings.title' | transloco }}</strong>
 
     @if (isLoading()) {
-      <span>Ładowanie ustawień...</span>
+      <span>{{ 'admin.registrationSettings.loading' | transloco }}</span>
     } @else {
       <span>
-        Aktualnie:
+        {{ 'admin.registrationSettings.current' | transloco }}
         <b [class.enabled]="enabled()" [class.disabled]="!enabled()">
-          {{ enabled() ? 'włączona' : 'wyłączona' }}
+          {{
+            (enabled()
+              ? 'admin.registrationSettings.enabled'
+              : 'admin.registrationSettings.disabled'
+            ) | transloco
+          }}
         </b>
       </span>
     }
@@ -20,9 +25,12 @@
 
   <button type="button" (click)="toggleRegistration()" [disabled]="isLoading() || isSaving()">
     @if (isSaving()) {
-      Zapisywanie...
+      {{ 'admin.registrationSettings.saving' }}
     } @else {
-      {{ enabled() ? 'Wyłącz rejestrację' : 'Włącz rejestrację' }}
+      {{
+        (enabled() ? 'admin.registrationSettings.disable' : 'admin.registrationSettings.enable')
+          | transloco
+      }}
     }
   </button>
 </section>

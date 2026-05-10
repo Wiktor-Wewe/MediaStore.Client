@@ -1,8 +1,8 @@
 <div class="page">
   <header class="page-header">
     <div>
-      <h1>Administratorzy</h1>
-      <p>Zarządzaj kontami administratorów oraz rejestracją nowych kont.</p>
+      <h1>{{ 'admin.users.title' | transloco }}</h1>
+      <p>{{ 'admin.users.subtitle' | transloco }}</p>
     </div>
   </header>
 
@@ -11,29 +11,31 @@
   <section class="card toolbar">
     <input
       type="text"
-      placeholder="Szukaj po emailu"
+      [placeholder]="'admin.users.searchPlaceholder' | transloco"
       [ngModel]="filters().email"
       (ngModelChange)="updateEmail($event)"
     />
 
     <select [ngModel]="filters().status" (ngModelChange)="updateStatus($event)">
-      <option [ngValue]="null">Wszystkie statusy</option>
-      <option value="Pending">Oczekujące</option>
-      <option value="Active">Aktywne</option>
+      <option [ngValue]="null">{{ 'admin.users.allStatuses' | transloco }}</option>
+      <option value="Pending">{{ 'admin.users.pending' | transloco }}</option>
+      <option value="Active">{{ 'admin.users.active' | transloco }}</option>
     </select>
 
     <select [ngModel]="filters().sortBy" (ngModelChange)="updateSortBy($event)">
-      <option value="email">Email</option>
-      <option value="status">Status</option>
+      <option value="email">{{ 'sort.email' | transloco }}</option>
+      <option value="status">{{ 'sort.status' | transloco }}</option>
     </select>
 
     <select [ngModel]="filters().sortDirection" (ngModelChange)="updateSortDirection($event)">
-      <option value="asc">Rosnąco</option>
-      <option value="desc">Malejąco</option>
+      <option value="asc">{{ 'common.ascending' | transloco }}</option>
+      <option value="desc">{{ 'common.descending' | transloco }}</option>
     </select>
 
-    <button type="button" (click)="applyFilters()">Filtruj</button>
-    <button type="button" class="secondary-button" (click)="clearFilters()">Wyczyść</button>
+    <button type="button" (click)="applyFilters()">{{ 'common.filter' | transloco }}</button>
+    <button type="button" class="secondary-button" (click)="clearFilters()">
+      {{ 'common.clear' | transloco }}
+    </button>
   </section>
 
   @if (error()) {
@@ -44,15 +46,15 @@
 
   <section class="card">
     @if (isLoading()) {
-      <p>Ładowanie administratorów...</p>
+      <p>{{ 'admin.users.loading' | transloco }}</p>
     } @else {
       <table>
         <thead>
           <tr>
-            <th>Email</th>
-            <th>Rola</th>
-            <th>Status</th>
-            <th class="actions-column">Akcje</th>
+            <th>{{ 'common.email' | transloco }}</th>
+            <th>{{ 'common.role' | transloco }}</th>
+            <th>{{ 'common.status' | transloco }}</th>
+            <th class="actions-column">{{ 'common.actions' | transloco }}</th>
           </tr>
         </thead>
 
@@ -63,26 +65,32 @@
               <td>{{ user.role }}</td>
               <td>
                 @if (user.status === 'Active') {
-                  <span class="badge badge-success">Aktywny</span>
+                  <span class="badge badge-success">{{
+                    'admin.users.activeBadge' | transloco
+                  }}</span>
                 } @else {
-                  <span class="badge badge-warning">Oczekuje</span>
+                  <span class="badge badge-warning">{{
+                    'admin.users.pendingBadge' | transloco
+                  }}</span>
                 }
               </td>
               <td>
                 <div class="actions">
                   @if (user.status === 'Pending') {
-                    <button type="button" (click)="approveUser(user.id)">Zatwierdź</button>
+                    <button type="button" (click)="approveUser(user.id)">
+                      {{ 'admin.users.approve' | transloco }}
+                    </button>
                   }
 
                   <button type="button" class="btn-danger" (click)="deleteUser(user.id)">
-                    Usuń
+                    {{ 'admin.users.delete' | transloco }}
                   </button>
                 </div>
               </td>
             </tr>
           } @empty {
             <tr>
-              <td colspan="4">Brak administratorów dla wybranych filtrów.</td>
+              <td colspan="4">{{ 'admin.users.empty' | transloco }}</td>
             </tr>
           }
         </tbody>
@@ -94,11 +102,12 @@
           [disabled]="filters().pageNumber === 1"
           (click)="changePage(filters().pageNumber - 1)"
         >
-          Poprzednia
+          {{ 'common.previous' | transloco }}
         </button>
 
         <span>
-          Strona {{ filters().pageNumber }} z {{ totalPages() || 1 }} — razem: {{ totalCount() }}
+          {{ 'common.page' | transloco }} {{ filters().pageNumber }} {{ 'common.of' | transloco }}
+          {{ totalPages() || 1 }} — {{ 'common.total' | transloco }}: {{ totalCount() }}
         </span>
 
         <button
@@ -106,7 +115,7 @@
           [disabled]="filters().pageNumber >= totalPages()"
           (click)="changePage(filters().pageNumber + 1)"
         >
-          Następna
+          {{ 'common.next' | transloco }}
         </button>
       </footer>
     }

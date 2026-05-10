@@ -5,11 +5,12 @@ import { RouterLink } from '@angular/router';
 import { ValidationProblemDetails } from '../../../core/api/validation-error.model';
 import { AuthService } from '../../../core/auth/auth.service';
 import { translateError } from '../../../shared/utils/error-code-map';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-register-page',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, TranslocoPipe],
   templateUrl: './register-page.component.html',
   styleUrl: './register-page.component.scss',
 })

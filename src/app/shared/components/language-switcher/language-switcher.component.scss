@@ -1,0 +1,19 @@
+.language-switcher {
+  display: flex;
+  gap: 0.35rem;
+}
+
+button {
+  min-height: 2rem;
+  padding: 0.35rem 0.55rem;
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+  font-weight: 800;
+}
+
+button.active,
+button:hover {
+  background: var(--color-primary);
+  color: #111827;
+}

@@ -1,21 +1,21 @@
 <section class="auth-card">
-  <h1>Rejestracja admina</h1>
-  <p>Konto będzie aktywne dopiero po zatwierdzeniu przez aktywnego administratora.</p>
+  <h1>{{ 'auth.register.title' | transloco }}</h1>
+  <p>{{ 'auth.register.description' | transloco }}</p>
 
   @if (isRegistered()) {
     <div class="success">
-      Konto zostało zgłoszone do akceptacji. Po zatwierdzeniu będzie można się zalogować.
+      {{ 'auth.register.success' | transloco }}
     </div>
   }
 
   <form [formGroup]="form" (ngSubmit)="submit()" class="form">
     <label>
-      Email
+      {{ 'common.email' | transloco }}
       <input type="email" formControlName="email" placeholder="admin@example.com" />
     </label>
 
     @if (form.controls.email.touched && form.controls.email.invalid) {
-      <p class="error">Podaj poprawny adres email.</p>
+      <p class="error">{{ 'auth.register.emailInvalid' | transloco }}</p>
     }
 
     @if (apiErrors()['Email']) {
@@ -23,12 +23,12 @@
     }
 
     <label>
-      Hasło
+      {{ 'common.password' | transloco }}
       <input type="password" formControlName="password" placeholder="Minimum 8 znaków" />
     </label>
 
     @if (form.controls.password.touched && form.controls.password.invalid) {
-      <p class="error">Hasło musi mieć minimum 8 znaków.</p>
+      <p class="error">{{ 'auth.register.passwordInvalid' | transloco }}</p>
     }
 
     @if (apiErrors()['Password']) {
@@ -40,9 +40,11 @@
     }
 
     <button type="submit" [disabled]="isSubmitting()">
-      {{ isSubmitting() ? 'Wysyłanie...' : 'Zarejestruj konto' }}
+      {{ (isSubmitting() ? 'auth.register.submitting' : 'auth.register.submit') | transloco }}
     </button>
   </form>
 
-  <a routerLink="/login" class="secondary-link">Masz już konto? Zaloguj się</a>
+  <a routerLink="/login" class="secondary-link">{{
+    'auth.register.alreadyHaveAccount' | transloco
+  }}</a>
 </section>

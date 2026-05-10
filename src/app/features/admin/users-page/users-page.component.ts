@@ -6,16 +6,18 @@ import { RegistrationSettingsComponent } from '../registration-settings/registra
 import { AdminUser, AdminUserFilters } from '../models/admin-user.model';
 import { AdminService } from '../services/admin.service';
 import { translateError } from '../../../shared/utils/error-code-map';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-users-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, RegistrationSettingsComponent],
+  imports: [CommonModule, FormsModule, RegistrationSettingsComponent, TranslocoPipe],
   templateUrl: './users-page.component.html',
   styleUrl: './users-page.component.scss',
 })
 export class UsersPageComponent implements OnInit {
   private readonly adminService = inject(AdminService);
+  private readonly transloco = inject(TranslocoService);
 
   readonly users = signal<AdminUser[]>([]);
   readonly totalCount = signal(0);
@@ -47,7 +49,7 @@ export class UsersPageComponent implements OnInit {
         this.totalPages.set(response.totalPages);
       },
       error: () => {
-        this.error.set('Nie udało się pobrać listy administratorów.');
+        this.error.set(this.transloco.translate('admin.users.loadError'));
         this.isLoading.set(false);
       },
       complete: () => {
@@ -127,13 +129,13 @@ export class UsersPageComponent implements OnInit {
     this.adminService.approveUser(id).subscribe({
       next: () => this.loadUsers(),
       error: () => {
-        this.error.set('Nie udało się zatwierdzić administratora.');
+        this.error.set(this.transloco.translate('admin.users.approveError'));
       },
     });
   }
 
   deleteUser(id: string): void {
-    const confirmed = confirm('Czy na pewno chcesz usunąć tego administratora?');
+    const confirmed = confirm(this.transloco.translate('admin.users.deleteConfirm'));
 
     if (!confirmed) {
       return;
@@ -145,7 +147,9 @@ export class UsersPageComponent implements OnInit {
         const firstError = this.getFirstError(err.error?.errors);
 
         this.error.set(
-          firstError ? translateError(firstError) : 'Nie udało się usunąć administratora.'
+          firstError
+            ? translateError(firstError)
+            : this.transloco.translate('admin.users.deleteError')
         );
       },
     });
